@@ -10,6 +10,7 @@
 
     <title>Home</title>
   </head>
+
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         
@@ -42,7 +43,70 @@
           </ul>
         
         </div>
+        {{user.first_name}}
       </nav>
+      <br>
+
+      <a href="/register"><button class="btn btn-info ml-5">Add User</button></a>
+      <h1>UserData</h1>
+      <div class="container">
+        <div class="row">
+          <form method="POST" action="home">
+            {% csrf_token %}
+            
+           
+
+
+          <input type="text" name="q" placeholder="Search" >
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        
+        </div>
+      </div>
+      <br>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Fullname</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          {% for ge in dat  %}
+
+          <tr>
+            <th scope="row">{{ge.id}}</th>
+            <td>{{ge.username}}</td>
+            <td>{{ge.email}}</td>
+            <td>{{ge.first_name}}</td>
+            <td><a href="{% url 'delete' ge.id  %}"><button  class="btn btn-danger">Delete</button></a>
+            <a href="{% url 'edit' ge.id  %}"><button class="btn btn-info">Edit</button></a>
+            </td>
+          </tr>
+            
+          {% endfor %}
+            
+         
+         
+        </tbody>
+      </table>
+      <br>
+     
+
+      <div class="container">
+        <div class="row">
+
+        </div>
+      </div>
+
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
